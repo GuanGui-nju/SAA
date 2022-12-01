@@ -1,2 +1,4 @@
-# SAA
-Code and Model For SAA
+# Model Validation
+We provide some trained models for validation.
+
+Run `python eval.py`
