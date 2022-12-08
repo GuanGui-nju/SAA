@@ -97,12 +97,14 @@ class BasicDataset(Dataset):
                         img_s1 = self.strong_transform1(img)
                         img_s2 = self.strong_transform2(img)
 
-                        if torch.rand(1) > 0.5:
-                            img_s2 = img_s2.crop((0, 0, 16, 32))  # 16,32|48,96
-                            img_s1.paste(img_s2, (0, 0, 16, 32))
-                        else:
-                            img_s2 = img_s2.crop((0, 0, 32, 16))
-                            img_s1.paste(img_s2, (0, 0, 32, 16))
+                        img_s1 = img_s1.paste(img_s2.crop((0, 0, 16, 32)), (0, 0, 16, 32)) if torch.rand(1)>0.5 else img_s1.paste(img_s2.crop((0, 0, 32, 16)), (0, 0, 32, 16))
+
+                        # if torch.rand(1) > 0.5:
+                        #     img_s2 = img_s2.crop((0, 0, 16, 32))  # 16,32|48,96
+                        #     img_s1.paste(img_s2, (0, 0, 16, 32))
+                        # else:
+                        #     img_s2 = img_s2.crop((0, 0, 32, 16))
+                        #     img_s1.paste(img_s2, (0, 0, 32, 16))
 
                         img_s = self.strong_transform(img_s1)
                     return idx, img_w, img_s
