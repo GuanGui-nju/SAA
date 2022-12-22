@@ -1,4 +1,3 @@
 # Model Validation
-We provide some trained models for validation.
+We provide training code.
 
-Run `python eval.py`
