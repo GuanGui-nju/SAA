@@ -1,0 +1,76 @@
+# frequently used parameters
+dataset: "stl10" # cifar10, cifar100, svhn, stl10
+num_classes: 10
+num_labels: 40 # 10, 20
+nfold: 1
+seed: 1 # 1, 2, 3, 4, 5,
+exp_name: "freeX" #, freeX, freeXW, freeMse, freeCE
+gpu: 3
+num_workers: 1
+num_eval_iter: 1000
+
+# distribution gradient
+dg_buffer_len: 128
+dg_method: "dgr" # dgr, dgrw, dgc, dgl
+dg_lr: 1.0
+dg_temp: 0.2
+
+####################
+# 1. GPU settings
+####################
+world_size: 1
+rank: 0
+dist_url: 'tcp://127.0.0.1:10001'
+dist_backend: 'nccl'
+# gpu: None
+amp: False
+multiprocessing_distributed: False
+
+
+####################
+# 2. outputs
+####################
+save_dir: "./results"
+save_name: ""
+resume: False
+load_path: ""
+overwrite: False
+
+
+####################
+# 3. train options
+####################
+epoch: 1
+num_train_iter: 1048576 #2**20
+# num_eval_iter: 1024
+
+soft_label: False
+T: 0.5 # for sharppen
+p_cutoff: 0.95
+ema_m: 0.999
+ulb_loss_ratio: 1.0
+
+lr: 0.03
+momentum: 0.9
+weight_decay: 0.0005 #5e-4
+
+batch_size: 64
+uratio: 7
+eval_batch_size: 512
+train_sampler: "RandomSampler"
+pin_memory: True
+
+####################
+# 4. data and model
+####################
+data_dir: '../data'
+
+net: 'resnet18' # 'WideResNet', "resnet18"
+net_from_name: False
+# net: 'resnet18' # 'WideResNet', "resnet18"
+# net_from_name: True
+
+depth: 28
+widen_factor: 2
+leaky_slope: 0.1
+dropout: 0.0
