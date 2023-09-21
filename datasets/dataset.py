@@ -114,7 +114,7 @@ class BasicDataset(Dataset):
         return len(self.data)
 
     def update_loss(self, idx, iter_loss):
-        self.history_loss[idx] = 0.000*self.history_loss[idx] + 1*iter_loss
+        self.history_loss[idx] = 0.001*self.history_loss[idx] + 0.999*iter_loss
 
     def update_mask(self):
         np_loss = self.history_loss.numpy()
